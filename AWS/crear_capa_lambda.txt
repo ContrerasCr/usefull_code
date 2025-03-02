@@ -1,0 +1,22 @@
+# Run container docker
+docker run -it ubuntu 
+# install programs to create layer
+apt update
+apt install python3.9  
+apt install python3-pip
+apt install zip
+mkdir -p layer/python/lib/python3.10/site-packages
+
+# Install libreries
+pip3 install requests -t layer/python/lib/python3.10/site-packages/
+
+#Copy to local
+cd layer
+zip -r mypackage.zip *
+
+
+# The way to move it to the local folder
+Open another console promp
+
+docker cp <Container-ID:path_of_zip_file>   <path_where_you_want_to_copy>
+ex: docker cp 7cdd497f0560:/layer/mypackage.zip C:\Users\super\Desktop\layer
